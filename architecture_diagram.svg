@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+<title id="t">1-axis CubeSat reaction-wheel ADCS architecture</title>
+<desc id="d">Data flow between the sim/ ground-truth harness (plant, mock sensors) and the freestanding flight/ control software (sensor ingest, complementary filter, inter-frame smoothing, PID engine with 0.15 degree integral separation, torque-to-PWM mapper).</desc>
+<defs>
+<filter id="glow" filterUnits="userSpaceOnUse" x="0" y="0" width="1600" height="900"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="glow-soft" filterUnits="userSpaceOnUse" x="0" y="0" width="1600" height="900"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<marker id="arrow-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#21b4ff"/></marker>
+<marker id="arrow-orange" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#ff8a1e"/></marker>
+<marker id="arrow-white" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#f4f6fa"/></marker>
+<pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#161b24" stroke-width="1"/></pattern>
+</defs>
+<rect width="1600" height="900" fill="#0a0c10"/>
+<rect width="1600" height="900" fill="url(#grid)" opacity="0.55"/>
+<text x="40" y="58" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="700" fill="#21b4ff" text-anchor="start" letter-spacing="4" opacity="1.0">CUBESAT ADCS</text>
+<text x="40" y="92" font-family="Inter, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="650" fill="#f4f6fa" text-anchor="start" letter-spacing="0.0" opacity="1.0">1-Axis Reaction-Wheel Attitude Control — System Architecture</text>
+<text x="1560" y="58" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="700" fill="#ff8a1e" text-anchor="end" letter-spacing="2" opacity="1.0">BARE-METAL · 1 kHz · FREESTANDING C++17</text>
+<text x="1560" y="88" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#8b94a7" text-anchor="end" letter-spacing="0.0" opacity="1.0">zero libraries · zero heap · 7.7 ns / tick · 92 B state</text>
+<rect x="40" y="140" width="480" height="660" rx="16" fill="none" stroke="#ff8a1e" stroke-width="1.4" stroke-dasharray="10 7" opacity="0.75"/>
+<rect x="64" y="126" width="56.8" height="28" rx="6" fill="#0a0c10" stroke="#ff8a1e" stroke-width="1.4"/>
+<text x="92.4" y="145" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#ff8a1e" text-anchor="middle" letter-spacing="0.0" opacity="1.0">sim/</text>
+<rect x="126.8" y="130" width="244.0" height="20" fill="#0a0c10"/>
+<text x="134.8" y="144" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="start" letter-spacing="0.0" opacity="1.0">ground-truth harness · float64</text>
+<rect x="580" y="140" width="980" height="660" rx="16" fill="none" stroke="#21b4ff" stroke-width="1.4" stroke-dasharray="10 7" opacity="0.75"/>
+<rect x="604" y="126" width="87.39999999999999" height="28" rx="6" fill="#0a0c10" stroke="#21b4ff" stroke-width="1.4"/>
+<text x="647.7" y="145" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#21b4ff" text-anchor="middle" letter-spacing="0.0" opacity="1.0">flight/</text>
+<rect x="697.4" y="130" width="312.4" height="20" fill="#0a0c10"/>
+<text x="705.4" y="144" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="start" letter-spacing="0.0" opacity="1.0">MCU firmware · float32 · -ffreestanding</text>
+<rect x="90" y="180" width="400" height="110" rx="10" fill="#11151d" stroke="#ff8a1e" stroke-width="1.6"/>
+<rect x="91" y="181" width="398" height="4" rx="2" fill="#ff8a1e" opacity="0.85"/>
+<text x="290.0" y="206" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="10.5" font-weight="600" fill="#ff8a1e" text-anchor="middle" letter-spacing="1.5" opacity="1.0">SENSOR</text>
+<text x="290.0" y="226" font-family="Inter, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="600" fill="#f4f6fa" text-anchor="middle" letter-spacing="0.3" opacity="1.0">Mock Gyro (IMU)</text>
+<text x="290.0" y="252" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">int16 · ±500 dps · 65.5 LSB/dps</text>
+<text x="290.0" y="273" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">0.25 dps bias + white noise</text>
+<rect x="90" y="318" width="400" height="110" rx="10" fill="#11151d" stroke="#ff8a1e" stroke-width="1.6"/>
+<rect x="91" y="319" width="398" height="4" rx="2" fill="#ff8a1e" opacity="0.85"/>
+<text x="290.0" y="344" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="10.5" font-weight="600" fill="#ff8a1e" text-anchor="middle" letter-spacing="1.5" opacity="1.0">SENSOR</text>
+<text x="290.0" y="364" font-family="Inter, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="600" fill="#f4f6fa" text-anchor="middle" letter-spacing="0.3" opacity="1.0">Mock Star Tracker</text>
+<text x="290.0" y="390" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">10 Hz absolute fix</text>
+<text x="290.0" y="411" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">int32 µrad · σ = 50 µrad</text>
+<rect x="90" y="456" width="400" height="90" rx="10" fill="#11151d" stroke="#ff8a1e" stroke-width="1.6"/>
+<rect x="91" y="457" width="398" height="4" rx="2" fill="#ff8a1e" opacity="0.85"/>
+<text x="290.0" y="492" font-family="Inter, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="600" fill="#f4f6fa" text-anchor="middle" letter-spacing="0.3" opacity="1.0">Hall Tachometer</text>
+<text x="290.0" y="518" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">wheel speed · 1 rpm quantized</text>
+<rect x="90" y="574" width="400" height="176" rx="10" fill="#151b26" stroke="#ff8a1e" stroke-width="1.6" filter="url(#glow)"/>
+<rect x="91" y="575" width="398" height="4" rx="2" fill="#ff8a1e" opacity="0.85"/>
+<text x="290.0" y="600" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="10.5" font-weight="600" fill="#ff8a1e" text-anchor="middle" letter-spacing="1.5" opacity="1.0">PHYSICS · RK4 @ 10 kHz</text>
+<text x="290.0" y="620" font-family="Inter, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="600" fill="#f4f6fa" text-anchor="middle" letter-spacing="0.3" opacity="1.0">Rigid-Body + Flywheel Plant</text>
+<text x="290.0" y="646" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">J_b·ω̇_b = −τ_w + τ_ext</text>
+<text x="290.0" y="667" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">J_w·(ω̇_b + Ω̇) = τ_w − τ_f</text>
+<text x="290.0" y="688" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">τ_w = Kt·clamp((d·V − Ke·Ω)/R, ±2 A)</text>
+<text x="290.0" y="709" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">knock injector → τ_ext impulse</text>
+<path d="M 90 700 L 66 700 L 66 235" fill="none" stroke="#ff8a1e" stroke-width="1.6" stroke-dasharray="4 5" opacity="0.8"/>
+<path d="M 66 235 L 88 235" fill="none" stroke="#ff8a1e" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-orange)" filter="url(#glow-soft)"/>
+<path d="M 66 373 L 88 373" fill="none" stroke="#ff8a1e" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-orange)" filter="url(#glow-soft)"/>
+<path d="M 66 501 L 88 501" fill="none" stroke="#ff8a1e" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-orange)" filter="url(#glow-soft)"/>
+<text x="56" y="460" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="11" fill="#ff8a1e" text-anchor="middle" transform="rotate(-90 56 460)" letter-spacing="1.5">TRUTH STATE θ, ω_b, Ω</text>
+<rect x="630" y="180" width="250" height="136" rx="10" fill="#11151d" stroke="#21b4ff" stroke-width="1.6"/>
+<rect x="631" y="181" width="248" height="4" rx="2" fill="#21b4ff" opacity="0.85"/>
+<text x="755.0" y="206" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="10.5" font-weight="600" fill="#21b4ff" text-anchor="middle" letter-spacing="1.5" opacity="1.0">DRIVER ISR</text>
+<text x="755.0" y="226" font-family="Inter, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="600" fill="#f4f6fa" text-anchor="middle" letter-spacing="0.3" opacity="1.0">Sensor Ingest</text>
+<text x="755.0" y="252" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">raw LSB → rad/s</text>
+<text x="755.0" y="273" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">µrad → rad · rpm → rad/s</text>
+<rect x="920" y="180" width="280" height="136" rx="10" fill="#11151d" stroke="#21b4ff" stroke-width="1.6"/>
+<rect x="921" y="181" width="278" height="4" rx="2" fill="#21b4ff" opacity="0.85"/>
+<text x="1060.0" y="206" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="10.5" font-weight="600" fill="#21b4ff" text-anchor="middle" letter-spacing="1.5" opacity="1.0">FUSION</text>
+<text x="1060.0" y="226" font-family="Inter, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="600" fill="#f4f6fa" text-anchor="middle" letter-spacing="0.3" opacity="1.0">Complementary Filter</text>
+<text x="1060.0" y="252" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">gyro propagate + abs. fix</text>
+<text x="1060.0" y="273" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">online bias observer</text>
+<text x="1060.0" y="294" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">L1 = 0.30 · L2 = 0.05</text>
+<rect x="1240" y="180" width="280" height="136" rx="10" fill="#11151d" stroke="#21b4ff" stroke-width="1.6"/>
+<rect x="1241" y="181" width="278" height="4" rx="2" fill="#21b4ff" opacity="0.85"/>
+<text x="1380.0" y="206" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="10.5" font-weight="600" fill="#21b4ff" text-anchor="middle" letter-spacing="1.5" opacity="1.0">CORRECTION LAYER</text>
+<text x="1380.0" y="226" font-family="Inter, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="600" fill="#f4f6fa" text-anchor="middle" letter-spacing="0.3" opacity="1.0">Inter-Frame Smoothing</text>
+<text x="1380.0" y="252" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">fix innovation spread</text>
+<text x="1380.0" y="273" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">over 100 ticks (0.1 s)</text>
+<text x="1380.0" y="294" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">no 10 Hz staircase</text>
+<rect x="1170" y="380" width="350" height="290" rx="12" fill="#151b26" stroke="#21b4ff" stroke-width="2.4" filter="url(#glow)"/>
+<rect x="1171" y="381" width="348" height="5" rx="2" fill="#21b4ff"/>
+<text x="1345.0" y="410" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="10.5" font-weight="600" fill="#21b4ff" text-anchor="middle" letter-spacing="1.5" opacity="1.0">CONTROL CORE</text>
+<text x="1345.0" y="438" font-family="Inter, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="650" fill="#f4f6fa" text-anchor="middle" letter-spacing="0.0" opacity="1.0">PID Control Engine</text>
+<text x="1345.0" y="464" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="400" fill="#f4f6fa" text-anchor="middle" letter-spacing="0.0" opacity="1.0">Kp 4.64 · Ki 6.40 · Kd 0.82</text>
+<rect x="1192" y="482" width="306" height="54" rx="8" fill="#ff8a1e" fill-opacity="0.10" stroke="#ff8a1e" stroke-width="1.6"/>
+<text x="1345.0" y="504" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#ff8a1e" text-anchor="middle" letter-spacing="1.5" opacity="1.0">INTEGRAL SEPARATION</text>
+<text x="1345.0" y="526" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="13.5" font-weight="500" fill="#f4f6fa" text-anchor="middle" letter-spacing="0.0" opacity="1.0">∫e  active only when |e| &lt; 0.15°</text>
+<text x="1345.0" y="564" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">P-error clamp → 0.12 rad/s slew</text>
+<text x="1345.0" y="587" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">D from gyro rate · 20 Hz LPF</text>
+<text x="1345.0" y="610" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">anti-windup · ±20 mN·m limit</text>
+<text x="1345.0" y="633" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">ωn = 8 rad/s · ζ = 0.9</text>
+<rect x="680" y="560" width="420" height="160" rx="10" fill="#11151d" stroke="#21b4ff" stroke-width="1.6"/>
+<rect x="681" y="561" width="418" height="4" rx="2" fill="#21b4ff" opacity="0.85"/>
+<text x="890.0" y="586" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="10.5" font-weight="600" fill="#21b4ff" text-anchor="middle" letter-spacing="1.5" opacity="1.0">ACTUATOR DRIVE</text>
+<text x="890.0" y="606" font-family="Inter, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="600" fill="#f4f6fa" text-anchor="middle" letter-spacing="0.3" opacity="1.0">Torque → PWM Mapper</text>
+<text x="890.0" y="632" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">τ_w = −τ_body + friction FF</text>
+<text x="890.0" y="653" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">i = τ_w / Kt · V = iR + Ke·Ω</text>
+<text x="890.0" y="674" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="0.0" opacity="1.0">duty → signed PWM ±4000 counts</text>
+<path d="M 490 235 L 628 235" fill="none" stroke="#21b4ff" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)" filter="url(#glow-soft)"/>
+<rect x="508.8" y="213" width="100.4" height="17" rx="3" fill="#0a0c10"/>
+<text x="559" y="225" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="11.5" font-weight="500" fill="#21b4ff" text-anchor="middle" letter-spacing="0.0" opacity="1.0">int16 · 1 kHz</text>
+<path d="M 490 373 L 1060 373 L 1060 318" fill="none" stroke="#21b4ff" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)" filter="url(#glow-soft)"/>
+<rect x="707.5" y="351" width="135.1" height="17" rx="3" fill="#0a0c10"/>
+<text x="775" y="363" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="11.5" font-weight="500" fill="#21b4ff" text-anchor="middle" letter-spacing="0.0" opacity="1.0">int32 µrad · 10 Hz</text>
+<path d="M 490 501 L 890 501 L 890 558" fill="none" stroke="#21b4ff" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)" filter="url(#glow-soft)"/>
+<rect x="653.7" y="479" width="72.6" height="17" rx="3" fill="#0a0c10"/>
+<text x="690" y="491" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="11.5" font-weight="500" fill="#21b4ff" text-anchor="middle" letter-spacing="0.0" opacity="1.0">int16 rpm</text>
+<path d="M 880 248 L 918 248" fill="none" stroke="#f4f6fa" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-white)" filter="url(#glow-soft)"/>
+<path d="M 1200 248 L 1238 248" fill="none" stroke="#f4f6fa" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-white)" filter="url(#glow-soft)"/>
+<path d="M 1380 316 L 1380 378" fill="none" stroke="#f4f6fa" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-white)" filter="url(#glow-soft)"/>
+<rect x="1387.0" y="340" width="169.8" height="17" rx="3" fill="#0a0c10"/>
+<text x="1392" y="352" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="11.5" font-weight="500" fill="#f4f6fa" text-anchor="start" letter-spacing="0.0" opacity="1.0">θ̂, ω̂ (bias-corrected)</text>
+<path d="M 1170 640 L 1102 640" fill="none" stroke="#f4f6fa" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-white)" filter="url(#glow-soft)"/>
+<rect x="1110.2" y="618" width="51.7" height="17" rx="3" fill="#0a0c10"/>
+<text x="1136" y="630" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="11.5" font-weight="500" fill="#f4f6fa" text-anchor="middle" letter-spacing="0.0" opacity="1.0">τ_body</text>
+<path d="M 680 662 L 492 662" fill="none" stroke="#ff8a1e" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-orange)" filter="url(#glow-soft)"/>
+<rect x="549.7" y="638" width="72.6" height="17" rx="3" fill="#0a0c10"/>
+<text x="586" y="650" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="11.5" font-weight="500" fill="#ff8a1e" text-anchor="middle" letter-spacing="0.0" opacity="1.0">PWM ±4000</text>
+<rect x="521.9" y="672" width="128.2" height="17" rx="3" fill="#0a0c10"/>
+<text x="586" y="684" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="11.5" font-weight="500" fill="#ff8a1e" text-anchor="middle" letter-spacing="0.0" opacity="0.85">→ reaction torque</text>
+<line x1="40" y1="828" x2="1560" y2="828" stroke="#5b6375" stroke-width="1" opacity="0.6"/>
+<text x="192.0" y="852" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="1.5" opacity="1.0">WORST-CASE SETTLE</text>
+<text x="192.0" y="880" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="19" font-weight="650" fill="#21b4ff" text-anchor="middle" letter-spacing="0.0" opacity="1.0">1.32 s</text>
+<text x="496.0" y="852" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="1.5" opacity="1.0">REQUIREMENT</text>
+<text x="496.0" y="880" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="19" font-weight="650" fill="#f4f6fa" text-anchor="middle" letter-spacing="0.0" opacity="1.0">&lt; 1.5 s</text>
+<text x="800.0" y="852" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="1.5" opacity="1.0">MONTE CARLO</text>
+<text x="800.0" y="880" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="19" font-weight="650" fill="#f4f6fa" text-anchor="middle" letter-spacing="0.0" opacity="1.0">125 runs</text>
+<text x="1104.0" y="852" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="1.5" opacity="1.0">CONTROL / PHYSICS</text>
+<text x="1104.0" y="880" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="19" font-weight="650" fill="#f4f6fa" text-anchor="middle" letter-spacing="0.0" opacity="1.0">1 kHz / 10 kHz</text>
+<text x="1408.0" y="852" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#8b94a7" text-anchor="middle" letter-spacing="1.5" opacity="1.0">MOMENTUM DRIFT</text>
+<text x="1408.0" y="880" font-family="'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace" font-size="19" font-weight="650" fill="#ff8a1e" text-anchor="middle" letter-spacing="0.0" opacity="1.0">1e-14</text>
+</svg>
